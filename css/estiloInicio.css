@@ -11,3 +11,12 @@
     background-size: cover;
     background-color: #464646;
 }
+
+.header_inicio{
+    background: none !important;
+}
+
+header{
+    background: white none repeat scroll 0 0;
+    padding: 0 0 12px;
+}
