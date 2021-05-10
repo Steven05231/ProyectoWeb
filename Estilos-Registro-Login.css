@@ -31,8 +31,10 @@ body{
 }
 
 .Titulo-Registro{
-    background-image: url(RegistroAcademico.jpg) ;
-
+    
+   padding: auto;
+   margin-top: auto;
+   
 }
 
 .Buttom{
