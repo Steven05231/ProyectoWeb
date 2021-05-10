@@ -1,56 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/b6764a4d50.js">   </script>
-    <link rel="stylesheet" href="Estilos.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/b6764a4d50.js"></script>
+    <link rel="stylesheet" href=" /css/Estilos-Registro-Login.css"  />
 
+    <title>Proyecto Uao prueba</title>
+  </head>
+  <body>
+    <section class="form-registrar">
+      <form class="Formulario">
+        <div class="Formulario">
+         
+         
+            <div class="Titulo-Registro">
+                <h2 class="Registro ">
+                    <img   src="/img/sesion/LoginAcademico.jpg"> 
+                </h2>
+            </div>
 
-
-    
-    <title>Document</title>
-</head>
-<body>
-    <form class="Formulario">
-
-            <!-- cuadro completo de registro-->
-
-        <div class="Login-Bloque-CuadroCompleto"> 
-            <div class="Bloque-Imagen">
-       <h1>Login</h1>
-
-        <div class="Contenedor"> 
-       
-         <br>
-         <br>   
-           
+          <!-- cuadro completo de registro-->
+          <div class="Contenedor-Input">
 
             <!-- casilla usuario-->
-
             <div class="Input-Contenedor">
-                <i class="far fa-user-circle"></i>
-                <input type="text" placeholder="Usuario">
+              <i class="far fa-user-circle"></i>
+              <input
+                type="text"
+                name="usuario"
+                id="usuario"
+                placeholder="Usuario"
+              />
             </div>
-                
+
             <!-- casilla Comtraseña-->
-
             <div class="Input-Contenedor">
-                <i class="fas fa-key"></i>
-                <input type="password" placeholder="Contraseña">
-            </div>    
-             
+              <i class="fas fa-key"></i>
+              <input type="password" placeholder="Contraseña" />
+            </div>
+
+          </div>
+
             <!-- Boton registrarse y Rediccioramiento login-->
-
             <div>
-            <input type="submit" value="Registate" class="Buttom">  
-            <p> ¿No tienes cuenta? Registate ya <a class="Link" href="RegistrarseVista.html"> registrarse </a> </p>
-        
+              <input class="Buttom" type="submit" value="Iniciar Sesion" />
+              <p>
+                
+                <a class="Link" href="OlvidoClave.html"> ¿Olvido su nombre de usuario o contraseña? </a>
+              </p>
+              <p>
+                ¿Estas Registrado?
+                <a class="Link" href="RegistrarseVista.html"> Registrate </a>
+              </p>
+            </div>
+          </div>
         </div>
-
-
-
-    </form>
-</body>
+      </form>
+    </section>
+  </body>
 </html>
