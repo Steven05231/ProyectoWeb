@@ -1,3 +1,25 @@
+<?php
+  session_start();
+
+  require 'database.php';
+
+  if(!empty($_POST['usuario']) && !empty($_POST['password'])){
+    $records = $conn->prepare('SELECT usuario, nombre, apellido, password, role FROM usuarios WHERE usuario=:usuario');
+    $records->bindParam(':usuario', $_POST['usuario']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+    $message = '';
+
+    if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
+      $_SESSION['user_nombre'] = $results['nombre'];
+      header('Location: /index.html');
+    } else{
+      $message = 'Estas credenciales no corresponden a un usuario';
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,13 +35,19 @@
     <section class="form-registrar">
       <form class="Formulario" action="login.php" method="post">
         <div class="Formulario">
-         
-         
+
+
             <div class="Titulo-Registro">
                 <h2 class="Registro ">
                     <img   src="../img/sesion/LoginAcademico.jpg"> 
                 </h2>
             </div>
+
+            <br>
+            <?php if (!empty($message)): ?>
+            <p><?= $message?></p>
+            <?php endif?>
+            <br>
 
           <!-- cuadro completo de registro-->
           <div class="Contenedor-Input">
@@ -39,7 +67,10 @@
             <!-- casilla Comtraseña-->
             <div class="Input-Contenedor">
               <i class="fas fa-key"></i>
-              <input type="password" placeholder="Contraseña" name="password" required/>
+              <input type="password" 
+              placeholder="Contraseña" 
+              name="password"
+              required/>
             </div>
 
           </div>
