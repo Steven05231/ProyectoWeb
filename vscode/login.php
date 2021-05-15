@@ -3,8 +3,8 @@
 
   require 'database.php';
 
-  if(!empty($_POST['usuario']) && !empty($_POST['password'])){
-    $records = $conn->prepare('SELECT usuario, nombre, apellido, password, role FROM usuarios WHERE usuario=:usuario');
+  if(!empty($_POST['usuario']) && !empty($_POST['password'])) {
+    $records = $conn->prepare('SELECT * FROM usuarios WHERE usuario = :usuario');
     $records->bindParam(':usuario', $_POST['usuario']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -12,12 +12,14 @@
     $message = '';
 
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
-      $_SESSION['user_nombre'] = $results['nombre'];
-      header('Location: /index.html');
-    } else{
-      $message = 'Estas credenciales no corresponden a un usuario';
+      $_SESSION['user_usuario'] = $results['usuario'];
+      header("Location: /vscode/index.html");
+    } else {
+      $message = 'Erro de autenticacion';
     }
   }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +35,7 @@
   </head>
   <body>
     <section class="form-registrar">
-      <form class="Formulario" action="login.php" method="post">
+      <form class="Formulario" action="login.php" method="POST">
         <div class="Formulario">
 
 
@@ -58,7 +60,6 @@
               <input
                 type="text"
                 name="usuario"
-                id="usuario"
                 placeholder="Usuario"
                 required
               />
