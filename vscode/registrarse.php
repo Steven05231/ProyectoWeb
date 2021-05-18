@@ -1,25 +1,107 @@
 <?php
-    require 'database.php';
-
-    $message = '';
-    if (!empty($_POST['nombres']) && !empty($_POST['apellidos'])
-        && !empty($_POST['usuario']) && !empty($_POST['role']) 
-        && !empty($_POST['password'])) {
-      $sql = "INSERT INTO usuarios (usuario, nombre, apellido, password, role) VALUES (:usuario, :nombres, :apellidos, :password, :role)";
-      $stmt = $conn->prepare($sql);
-      $stmt->bindParam(':usuario',$_POST['usuario']);
-      $stmt->bindParam(':nombres',$_POST['nombres']);
-      $stmt->bindParam(':apellidos',$_POST['apellidos']);
-      $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-      $stmt->bindParam(':password', $password);
-      $stmt->bindParam(':role',$_POST['role']);
-
-      if ($stmt->execute()) {
-        $message = 'Successfully created new user';
+    //Include la configuracion de la base de datos
+    require_once 'database.php';
+  
+    //De fine las variables he inicialice con los valores
+    $username = $password = $confirm_password = "";
+    $username_err = $password_err = $confirm_password_err = "";
+  
+    //procesando desde los datos cuando se suben
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  
+      //Validar el username
+      if (empty(trim($_POST["username"]))) {
+        $username_err = "Profavor ingresar el usuario.";
       } else {
-        $message = 'Sorry there must have been an issue creating your account';
+        //Prepare una declaración selecta
+        $sql = "SELECT id FROM users WHERE username = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            //Vincular variables a la declaración preparada como parámetros
+            mysqli_stmt_bind_param($stmt, "s", $param_usermane);
+
+            //Setiar el parametro
+            $param_usermane = trim($_POST["username"]);
+
+            //Intente ejecutar la declaración preparada
+            if (mysqli_stmt_execute($stmt)) {
+              /* Resultado */
+              mysqli_stmt_store_result($stmt);
+
+              if (mysqli_stmt_num_rows($stmt) == 1) {
+                $username_err = "Este nombre de usuario ya esta en uso. ";
+              }else {
+                $username = trim($_POST["username"]);
+            }
+
+            }else {
+            echo "Oops! error porfavor intenta mas tarde. ";
+          }
+
+          //Cierre del sistema
+          mysqli_stmt_close($stmt);
+        }
       }
+
+
+    //validar el password
+    if (empty(trim($_POST["confirm_password"]))) {
+      $password_err = "Porfavor ingrese el password.";
+
+    } elseif (strlen(trim($_POST["password"])) < 6) {
+      $password_err = "El password tiene que tener minimo 6 caracteres.";
+
+    } else {
+      $password = trim($_POST["password"]);
     }
+
+    //Validar la confirmacion del password
+    if (empty(trim($_POST["confirm_password"]))) {
+      $confirm_password_err = "Porfavor confirme la contraseña.";
+    } else {
+      $confirm_password = trim($_POST["confirm_password"]);
+
+      if (empty($password_err) && ($password != $confirm_password)) {
+        $confirm_password_err = "La contraseña no coincide.";
+      }
+    } 
+
+    //Verifique los errores de entrada antes de insertar en la base de datos.
+    if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+      
+      //Prepare una declaración de inserción
+      $sql = "INSERT INTO users (username, password, name, surname, role) VALUES (?,?,?,?,?)";
+
+      if ($stmt = mysqli_prepare($link, $sql)) {
+
+        //Vincular variables a la declaración preparada como parámetros
+        mysqli_stmt_bind_param($stmt, "sssss", $param_usermane, $param_password, $name, $surname, $role);
+
+        //Setear los parametros
+        $param_usermane = $username;
+        $param_password = password_hash($password, PASSWORD_BCRYPT);
+        $name = trim($_POST['name']);
+        $surname = trim($_POST['surname']);
+        $role = trim($_POST['role']);
+
+        //Crea un hash de contraseña
+        //Intente ejecutar la declaración preparada
+        if (mysqli_stmt_execute($stmt)) {
+
+          //Redirigir a la pagina de login
+          header("location: login.php");
+        } else{
+          echo "¡UPS! Algo salió mal. Por favor, inténtelo de nuevo más tarde.";
+        }
+
+        // Cerrar la declaracion.
+        mysqli_cloe($link);
+      }
+
+    }
+    mysqli_close($link);
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +118,7 @@
 
 
     <section class="form-registrar">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
       <form class="Formulario" action="registrarse.php" method="post">
         <div class="Formulario">
 
@@ -44,6 +127,7 @@
                 <h2 class="Registro ">
                     <img   src="../img/sesion/RegistroAcademico.jpg"> 
                 </h2>
+
             </div>
 
 
@@ -59,10 +143,6 @@
 
             <br>
             <br>
-            <?php if(!empty($message)):?>
-            <p><?= $message ?></p>
-            <?php endif;?>
-            <br>
             <br>
 
           <!-- cuadro completo de registro-->
@@ -73,7 +153,7 @@
               <i class="far fa-user-circle"></i>
               <input
                 type="text"
-                name="nombres"
+                name="name"
                 id="nombres"
                 placeholder="Nombre"
                 required
@@ -85,7 +165,7 @@
               <i class="far fa-user-circle"></i>
               <input
                 type="text"
-                name="apellidos"
+                name="surname"
                 id="apellidos"
                 placeholder="Apellido"
                 required
@@ -97,7 +177,7 @@
               <i class="far fa-user-circle"></i>
               <input
                 type="text"
-                name="usuario"
+                name="username"
                 id="usuario"
                 placeholder="Usuario"
                 required
@@ -115,7 +195,7 @@
 
             <div class="Input-Contenedor">
               <i class="fas fa-key"></i>
-              <input type="password" placeholder="Confirmar Contraseña" name="confirmar-password"required/>
+              <input type="password" placeholder="Confirmar Contraseña" name="confirm_password"required/>
             </div>
 
           </div>

@@ -5,7 +5,9 @@ body{
     margin: 10 0 0 0;
 }
 nav{
-    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .imagen-logo{
     width: 90px;
