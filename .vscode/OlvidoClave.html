@@ -5,50 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/b6764a4d50.js"></script>
-    <link rel="stylesheet" href=" /css/Estilos-Registro-Login.css"  />
+    <link rel="stylesheet" href=" /css/Estilo-OlvidoClave.css" />
 
-    <title>Proyecto Uao prueba</title>
+    <title>Proyecto Uao</title>
   </head>
   <body>
-    
-    <header id="encabezado" class="encabezado-barra-superior" role="banner">
-      <div class="barra-superior">
-        <div class="contenedor-barra">
-          <div class="barra-navegacion">
-            <div class="barra-nav-espc">
-              <div class="icono-menu"  data-region="icono-menu"> 
-                  <button aria-expanded="false" aria-controls="area-cajon" type="button" class="contorno-boton"
-                  data-action="alternativa-cajon" data-side="left" data-preference="apertura-cajon">
-                  
-                    <div>
-                      <i class="fas fa-bars"></i>
-                    
-                    </div>                    
-                  </button>
-              </div>
+    <section class="form-registrar">
+      <form class="Formulario">
+        <div id="pagina" class="contenedor-general">
+          <div id="pagina-contenedor" class="conetenedor-1">
+            <div id="region-trabajar" class="contenedor-2">
+              <section id="region-ppal">
+                <div class="caja-general">
+                  Para reajustar su contraseña, envíe su nombre de usuario o su
+                  dirección de correo electrónico. Si podemos encontrarlo en la
+                  base de datos, le enviaremos un email con instrucciones para
+                  poder acceder de nuevo.
+                </div>
+                
+                <form autocomplete="off" action="" method="POST">
+                  <div class="user" id="busqueda-por-nombre-usuario">
+                    Buscar por nombre de usuario
+                  </div>
+                
+                      <div> 
+                        <input type="text" id="contenedor-nombre-ususario" />
+                     
+                                         
+                        </div>
+                        <input class="button" id="buscar"  type="submit" value="Buscar">
+                     
+
+                      <div class="buscar-por-email">
+                        Buscar por direccion email
+                      </div>
+                        <div>
+                              <input type="text" id="contenedor-email" />
+                          
+                             
+                        </div>
+                        <input class="button" id="boton-buscar" type="submit" value="Buscar">
+
+                        <div id="pagina-ppal" class="link">
+                          <a class="Link-ppal" href="LoginVista.html" > Pagina Pricipal </a> 
+
+
+                        </div>
+                      
+
+                    </div>
+                </form>
+              </section>
             </div>
           </div>
         </div>
-      </div>
-    </header>
-
-        <section class="form-registrar">
-          <form class="Formulario">
-            <div id="pagina" class="contenedor-general">
-              <div id="pagina-contenedor" class=" conetenedor-1">
-                <div id="region-trabajar" class="contenedor-2">
-                  <section id="region-ppal">
-
-
-
-                  </section>
-                </div>
-              </div>
-            </div>
-          </form>
-        </section>
-
-
-
+      </form>
+    </section>
   </body>
 </html>
