@@ -43,6 +43,7 @@ body{
     padding: 10px;
     text-align: center;
     
+    
 }
 
 .button {
@@ -54,6 +55,7 @@ body{
     width: 110px;
     height: 20PX;
     border: 5px;
+    
     
 
 }
@@ -71,9 +73,9 @@ body{
 
 }
 
-.link:hover{
+.link a :hover{
     
-
+       
         color: black;
         text-decoration: underline;
     }

@@ -1,16 +1,21 @@
 body{
 
     background-image: url(/img/sesion/fondo.jpg);
+    background-origin: no-repeat;
+    background-size: cover;
     
 }
 
 *{
+
+    
     margin: 0px;
     padding: 1px;
     box-sizing: border-box;
     margin-bottom: 2px;
     border-radius: 10px;
     font-size: 17px;
+    
     
     
 }
@@ -27,6 +32,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px;
     margin-bottom: 20px;
+    
     
     
 }
@@ -49,6 +55,7 @@ body{
     height: 20PX;
     border: 5px;
     color: black;
+        
     
 
 }
@@ -57,11 +64,14 @@ body{
 color: black;
 text-decoration: none;
 
+
 }
 
 .form-registrar a :hover{
 
     color: black;
     text-decoration: underline;
+    
 }
+
 
