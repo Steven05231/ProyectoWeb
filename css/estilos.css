@@ -4,7 +4,7 @@ div{
 body{
     margin: 10 0 0 0;
 }
-nav{
+.contenido-nave{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,6 +16,10 @@ nav{
 .imagen-usuario{
     width: 60px;
 }
+.imagencentro{
+    width: 250px;
+    height: 300px;
+}
 .contenido-header{
     display: flex;
     justify-content: space-between;
@@ -23,4 +27,79 @@ nav{
 .contenido-usuario{
     display: flex;
     align-items: center;
+}
+.nav-bar{
+    background-color: black;
+    padding: 15px;
+    display: flex;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 100%;
+    justify-content: space-between;
+}
+.menu, .submenu{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu{
+    background: #555;
+    width: 300px;
+    margin-left: -100%;
+    transition: all 0.5s;
+
+}
+.menu__link{
+    display: block;
+    padding: 20px;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+.menu__link:hover{
+    background-color: #444;
+}
+.mostrar{
+    margin-left: 0;
+}
+
+.contenedor{
+    display: flex;
+    margin: 0 30px;
+    max-width: 1300px;
+}
+.contenido-seccion{
+    margin: 10px;
+}
+.sombra{
+    margin-top: 140px;
+    width: auto;
+    height: auto;
+    background-color: #FBFBFB;
+    box-shadow: 0px 5px 5px 5px #D5D5D5;
+}
+.caja{
+    box-sizing: border-box;
+    border: 2px solid black;
+    margin: 20px;
+}
+.bordeabajo{
+    border: 2px solid black;
+}
+.btn-main{
+    border-radius: 5px;
+    width: 93%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+p{
+    margin-top: 10px;
+    text-align: center;
+}
+.contenidoforo{
+    background-color: #FFFCFC;
+    width: 90%;
+    margin-top: 30px;
+    margin-left: 200px;
 }

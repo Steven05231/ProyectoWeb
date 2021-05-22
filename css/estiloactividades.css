@@ -1,0 +1,37 @@
+.contenidoregistros{
+    display: flex;
+}
+.boton{
+    margin: auto;
+    margin-right: 20px;
+}
+.cajacademico{
+    box-sizing: border-box;
+    border: 2px solid black;
+    margin: 20px;
+    width: 50%;
+}
+.contenido__medio{
+    display: block;
+    margin-bottom: 10px;
+}
+.contenido__central{
+    display: flex;
+}
+.contenedoracademico{
+    display: flex;
+    margin: 80px 30px;
+    max-width: 1300px;
+}
+.contenedorprofesional{
+    display: flex;
+    margin: 80px 30px;
+    max-width: 1300px;
+    width: 50%;
+}
+.cajaprofesional{
+    box-sizing: border-box;
+    border: 2px solid black;
+    margin: 20px;
+    width: 50%;
+}

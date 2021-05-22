@@ -119,7 +119,7 @@
 
             <div class="Titulo-Registro">
                 <h2 class="Registro ">
-                    <img   src="../img/sesion/LoginAcademico.jpg"> 
+                    <img   src="../img/sesion/LoginAcademico.jpg" class="login"> 
                 </h2>
             </div>
             <?php 
